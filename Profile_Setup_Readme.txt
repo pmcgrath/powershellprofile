@@ -8,4 +8,6 @@
 
 
 # Dot source all script files in the c:\POSHProfile folder
-get-childitem c:\POSHProfile *.ps1 | sort name | % { . $_.FullName }
+push-location;
+get-childitem c:\POSHProfile *.ps1 | sort name | % { . $_.FullName; }
+pop-location;
