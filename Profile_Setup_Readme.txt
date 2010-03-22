@@ -9,5 +9,5 @@
 
 # Dot source all script files in the c:\POSHProfile folder
 push-location;
-get-childitem c:\POSHProfile *.ps1 | sort name | % { . $_.FullName; }
+get-childitem D:\POSHProfile *.ps1 | sort name | % { . $_.FullName; }
 pop-location;
