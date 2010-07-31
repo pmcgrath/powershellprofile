@@ -1,4 +1,4 @@
-$global:iPSTrunkPath = 'D:\SVN\ccs\iPS\trunk';
+$global:iPSTrunkPath = 'd:\svn\ccs\ips\trunk';
 
 
 function Set-LocationToiPSTrunk
