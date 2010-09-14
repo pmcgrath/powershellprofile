@@ -17,15 +17,25 @@ function Set-BrowserProxyUsage
 
 
 # Notepad++
-function np
+function NP
 {
 	if (test-path 'c:\program files\notepad++') { &'c:\program files\notepad++\notepad++.exe' $args; }
 }
 
 
-# Ensure the following are in the path
-# Ensure Git is on current path
-if (! ($env:Path -contains 'c:\program files\git\bin')) { $env:Path += ';c:\program files\git\bin'; }
+# Extend environment path
+function Extend-EnvironmentPath
+(
+	[string[]] $additions
+)
+{
+	$additions | % { if (! ($env:Path.Contains($_))) { $env:Path += ";$_"; }}
+}
 
-# Ensure Ruby.exe is on current path - Currently v1.9.1 but may need to support multiple versions soon
-if (! ($env:Path -contains 'C:\ruby\ruby191\bin')) { $env:Path += ';c:\ruby\ruby191\bin'; }
+
+# Ensure the following are in the path
+$pathAdditions = @();
+$pathAdditions += 'c:\program files\git\bin';									# Git
+$pathAdditions += 'c:\windows\microsoft.net\framework\v4.0.30319';				# .Net 4.0
+$pathAdditions += 'c:\ruby\ruby192\bin';										# Ruby 1.9.2 - May need to support multiple versions soon, can use this to see current location : ruby -e 'puts $:'
+Extend-EnvironmentPath $pathAdditions;
