@@ -33,9 +33,29 @@ function Extend-EnvironmentPath
 }
 
 
+# Set ruby environment
+function Set-RubyEnvironment
+(
+	[string] $version	= '192'
+)
+{
+	$newRubyEnvironmentPath = "c:\ruby\ruby$version\bin";
+	if (! (test-path $newRubyEnvironmentPath)) { throw "Path for ruby v$version does not exist ($newRubyEnvironmentPath)"; }
+	
+	# Can use this to see current version if any's load paths - helps to identify the location : ruby -e 'puts $:'
+	$existingRubyPath = $env:path.Split(';') | ? { $_ -like "*\ruby*\bin" } | select -first 1;  # Ignores the fact that you may have multiple path entries for ruby
+	
+	if ($existingRubyPath) 	{ $env:Path = $env:Path.Replace($existingRubyPath, $newRubyEnvironmentPath); }
+	else 					{ Extend-EnvironmentPath @($newRubyEnvironmentPath); }
+}
+
+
 # Ensure the following are in the path
 $pathAdditions = @();
 $pathAdditions += 'c:\program files\git\bin';									# Git
 $pathAdditions += 'c:\windows\microsoft.net\framework\v4.0.30319';				# .Net 4.0
-$pathAdditions += 'c:\ruby\ruby192\bin';										# Ruby 1.9.2 - May need to support multiple versions soon, can use this to see current location : ruby -e 'puts $:'
 Extend-EnvironmentPath $pathAdditions;
+
+# Set up default ruby
+Set-RubyEnvironment;
+
