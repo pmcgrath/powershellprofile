@@ -58,4 +58,3 @@ Extend-EnvironmentPath $pathAdditions;
 
 # Set up default ruby
 Set-RubyEnvironment;
-

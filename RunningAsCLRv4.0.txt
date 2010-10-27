@@ -1,0 +1,22 @@
+Powershell.exe is a non managed executable that loads CLR v2.0 be default as of powershell v2.0
+
+To run loading CLR v4.0 we need to create a powershell.exe.config side by side with powershell.exe - can get location using 
+	get-process powershell | select path
+	
+Place the following in the config file
+	<?xml version="1.0" encoding="utf-8" ?>
+	<configuration>
+	  <!-- http://msdn.microsoft.com/en-us/library/w4atty68.aspx -->
+	  <startup useLegacyV2RuntimeActivationPolicy="true">
+		<supportedRuntime version="v4.0.30319" />
+		<supportedRuntime version="v3.5" />
+		<supportedRuntime version="v3.0" />
+		<supportedRuntime version="v2.0.50727" />
+	  </startup>
+	</configuration>
+	
+Can test which version of the CLR is loaded using
+	[Environment]::Version
+will also be able to see new CLR v4.0 functionality using
+	[Environment]::Is64BitOperatingSystem
+	[Environment]::Is64BitProcess
