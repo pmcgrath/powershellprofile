@@ -36,7 +36,7 @@ function Extend-EnvironmentPath
 # Set ruby environment
 function Set-RubyEnvironment
 (
-	[string] $version	= '192'
+	[string] $version	= '192_p136'
 )
 {
 	$newRubyEnvironmentPath = "c:\ruby\ruby$version\bin";
