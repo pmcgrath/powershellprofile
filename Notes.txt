@@ -1,21 +1,7 @@
-http://github.com/dahlbyk/posh-git
+See for other profile info
+	http://github.com/dahlbyk/posh-git
+	
+See Profile_Setup_Readme.txt for setting up a global profile that dot sources all content
 
-Use the following to see all the profile files
-	$profile | get-member
-We are intrested in the AllUsersAllHosts property which is @ C:\Windows\System32\WindowsPowerShell\v1.0\profile.ps1 	
-
-Should place the following into that file so it will dot source all files in our POSHProfile folder
-
-# pmcgrath @ 20/03/2010
-# Place this content in the $Profile.AllUsersAllHosts file so all users and all hosts have access to this
-#       copy-item Profile_Setup_Readme.txt $Profile.AllUsersAllHosts
-
-
-# May need to consider the dot sourcing sequence in future in which case we can use a numeric prefix on the script file names
-# May also look into using powershell modules
-
-
-# Dot source all script files in the c:\POSHProfile folder
-push-location;
-get-childitem d:\poshprofile *.ps1 | sort name | % { . $_.FullName; }
-pop-location;
+Can reload profile after alterations using dot sourcing . $profile.AllUsersAllHosts
+Will gte loaded the next time a powershell host is loaded anyway

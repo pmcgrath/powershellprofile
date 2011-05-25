@@ -1,4 +1,4 @@
-# Functions
+# pmcgrath @ 20/03/2010
 function Set-BrowserProxyUsage
 (
 	[switch] $useProxy
@@ -7,11 +7,9 @@ function Set-BrowserProxyUsage
 	$useProxySettingValueForIE = 0;
 	if ($useProxy) { $useProxySettingValueForIE = 1; }
 
-	push-location;
-	
-	set-location HKCU:\"software\microsoft\windows\currentversion\internet settings";
+	push-location;	
+	set-location 'HKCU:\software\microsoft\windows\currentversion\internet settings';
 	set-itemproperty . ProxyEnable $useProxySettingValueForIE;
-	
 	pop-location;
 }
 
@@ -43,18 +41,23 @@ function Test-IsCurrentUserAnAdministrator
 	(new-object System.Security.Principal.WindowsPrincipal([System.Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole("Administrators");
 }
 
+function Goto-oss
+{
+	set-location d:\oss;
+}
+
+
 # Change foreground colour if an admin
-if (Test-IsCurrentUserAnAdministrator -and ($host.Name -eq 'ConsoleHost')) { $host.UI.RawUI.ForegroundColor = 'Red'; }
+if (Test-IsCurrentUserAnAdministrator -and ($host.Name -eq 'ConsoleHost')) { $host.UI.RawUI.ForegroundColor = 'DarkGreen'; }
 
 # Ensure the following are in the path - if they don't exist will ignore anyway
-$pathAdditions = @();
-$pathAdditions += 'c:\program files\git\bin';									# Git
-$pathAdditions += 'c:\windows\microsoft.net\framework\v4.0.30319';				# .Net 4.0
-Extend-EnvironmentPath $pathAdditions;
+'c:\program files\git\bin',															# Git
+'c:\windows\microsoft.net\framework\v4.0.30319' | Extend-EnvironmentPath;			# .Net 4.0
 
 # Set up default ruby
 Set-RubyEnvironment;
 
 # Common aliases - assume they exist rather than clutering with tests
-set-alias np "c:\program files\notepad++\notepad++.exe";
 set-alias ie "c:\program files\internet explorer\iexplore.exe";
+set-alias notepad "c:\program files\notepad++\notepad++.exe";
+set-alias np "c:\program files\notepad++\notepad++.exe";
