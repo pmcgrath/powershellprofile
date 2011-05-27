@@ -18,7 +18,7 @@ function Extend-EnvironmentPath
 	[string[]] $additions
 )
 {
-	$additions | % { if (! ($env:Path.Contains($_))) { $env:Path += ";$_"; }}
+	$additions | % { if (! ($env:Path.Contains($_))) { $env:Path += ";$_"; }}	# Can see existing with $env:Path.Split(';')
 }
 
 function Set-RubyEnvironment
@@ -51,8 +51,10 @@ function Goto-oss
 if (Test-IsCurrentUserAnAdministrator -and ($host.Name -eq 'ConsoleHost')) { $host.UI.RawUI.ForegroundColor = 'DarkGreen'; }
 
 # Ensure the following are in the path - if they don't exist will ignore anyway
-'c:\program files\git\bin',															# Git
-'c:\windows\microsoft.net\framework\v4.0.30319' | Extend-EnvironmentPath;			# .Net 4.0
+Extend-EnvironmentPath @(
+	'c:\program files\git\bin',											# Git
+	'c:\windows\microsoft.net\framework\v4.0.30319',					# .Net v4.0
+	'c:\program files\microsoft sdks\windows\v7.1\bin');				# Windows SDK v7.1
 
 # Set up default ruby
 Set-RubyEnvironment;
