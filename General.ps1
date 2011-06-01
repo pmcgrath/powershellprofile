@@ -52,14 +52,16 @@ if (Test-IsCurrentUserAnAdministrator -and ($host.Name -eq 'ConsoleHost')) { $ho
 
 # Ensure the following are in the path - if they don't exist will ignore anyway
 Extend-EnvironmentPath @(
-	'c:\program files\git\bin',											# Git
-	'c:\windows\microsoft.net\framework\v4.0.30319',					# .Net v4.0
-	'c:\program files\microsoft sdks\windows\v7.1\bin');				# Windows SDK v7.1
+	'c:\program files\git\bin', 
+	'c:\program files\microsoft sdks\windows\v7.1\bin', 
+	'c:\utilities\linqpad', 
+	'c:\windows\microsoft.net\framework\v4.0.30319');
 
 # Set up default ruby
 Set-RubyEnvironment;
 
 # Common aliases - assume they exist rather than clutering with tests
+set-alias devenv "c:\program files\microsoft visual studio 10.0\common7\ide\devenv.exe";
 set-alias ie "c:\program files\internet explorer\iexplore.exe";
 set-alias notepad "c:\program files\notepad++\notepad++.exe";
 set-alias np "c:\program files\notepad++\notepad++.exe";
