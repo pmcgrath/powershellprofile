@@ -1,4 +1,5 @@
 # pmcgrath @ 20/03/2010
+# To reload after changes dot source using -> . $Profile.AllUsersAllHosts
 function Set-BrowserProxyUsage
 (
 	[switch] $useProxy
@@ -38,7 +39,7 @@ function Set-RubyEnvironment
 
 function Test-IsCurrentUserAnAdministrator
 {
-	(new-object System.Security.Principal.WindowsPrincipal([System.Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole("Administrators");
+	(new-object System.Security.Principal.WindowsPrincipal([System.Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole('Administrators');
 }
 
 function Goto-oss
@@ -48,20 +49,22 @@ function Goto-oss
 
 
 # Change foreground colour if an admin
-if (Test-IsCurrentUserAnAdministrator -and ($host.Name -eq 'ConsoleHost')) { $host.UI.RawUI.ForegroundColor = 'DarkGreen'; }
+if (Test-IsCurrentUserAnAdministrator -and ($host.Name -eq 'ConsoleHost')) { $host.UI.RawUI.ForegroundColor = 'Green'; }
 
 # Ensure the following are in the path - if they don't exist will ignore anyway
 Extend-EnvironmentPath @(
 	'c:\program files\git\bin', 
 	'c:\program files\microsoft sdks\windows\v7.1\bin', 
-	'c:\utilities\linqpad', 
+	'd:\utilities\linqpad', 
 	'c:\windows\microsoft.net\framework\v4.0.30319');
 
 # Set up default ruby
 Set-RubyEnvironment;
 
 # Common aliases - assume they exist rather than clutering with tests
-set-alias devenv "c:\program files\microsoft visual studio 10.0\common7\ide\devenv.exe";
-set-alias ie "c:\program files\internet explorer\iexplore.exe";
-set-alias notepad "c:\program files\notepad++\notepad++.exe";
-set-alias np "c:\program files\notepad++\notepad++.exe";
+set-alias devenv 'c:\program files\microsoft visual studio 10.0\common7\ide\devenv.exe';
+set-alias gitk 'c:\program files\git\cmd\gitk.cmd';
+set-alias ie 'c:\program files\internet explorer\iexplore.exe';
+set-alias notepad 'c:\program files\notepad++\notepad++.exe';
+set-alias np 'c:\program files\notepad++\notepad++.exe';
+set-alias vim 'c:\program files\git\share\vim\vim73\vim.exe';
