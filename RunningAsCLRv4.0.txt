@@ -1,3 +1,5 @@
+Powershell v3.0 will run as a CLR v4.0 program, till then the following info applies
+
 Powershell.exe is a non managed executable that loads CLR v2.0 by default as of powershell v2.0
 
 To run loading CLR v4.0 we need to create a powershell.exe.config side by side with powershell.exe - can get location using 

@@ -1,7 +1,7 @@
 See for other profile info
 	http://github.com/dahlbyk/posh-git
-	
+
 See Profile_Setup_Readme.txt for setting up a global profile that dot sources all content
 
 Can reload profile after alterations using dot sourcing . $profile.AllUsersAllHosts
-Will gte loaded the next time a powershell host is loaded anyway
+Will get loaded the next time a powershell host is loaded anyway

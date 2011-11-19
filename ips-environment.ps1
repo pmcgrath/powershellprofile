@@ -1,11 +1,13 @@
-$global:iPSTrunkPath = 'd:\svn\ccs\ips\trunk';
+# pmcgrath @ 20/03/2010
+# See Profile_Setup_Readme.txt - to make changes effective . $profile.allusersallhosts
 
+# iPS environment
+$global:iPSTrunkPath = 'd:\svn\ccs\ips\trunk';
 
 function Set-LocationToiPSTrunk
 {
 	set-location $global:iPSTrunkPath;
 }
-
 
 function Switch-ToiPSRuby
 {
