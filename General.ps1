@@ -9,7 +9,8 @@ Extend-EnvironmentPath @(
 	'c:\program files\git\bin', 
 	'c:\program files\microsoft sdks\windows\v7.1\bin', 
 	'd:\utilities\linqpad', 
-	'c:\windows\microsoft.net\framework\v4.0.30319');
+	'c:\windows\microsoft.net\framework\v4.0.30319',
+	'c:\devkit');
 
 # Set up default ruby
 Set-RubyEnvironment;
