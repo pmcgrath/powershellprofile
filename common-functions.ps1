@@ -12,10 +12,10 @@ function Extend-EnvironmentPath
 
 function Set-RubyEnvironment
 (
-	[string] $version	= '192_p136'
+	[string] $version	= '1.9.3-194'
 )
 {
-	$newRubyEnvironmentPath = "c:\ruby\ruby$version\bin";
+	$newRubyEnvironmentPath = "d:\ruby\ruby-$version\bin";
 	if (! (test-path $newRubyEnvironmentPath)) { throw "Path for ruby v$version does not exist ($newRubyEnvironmentPath)"; }
 	
 	# Can use this to see current version if any's load paths - helps to identify the location : ruby -e 'puts $:'
