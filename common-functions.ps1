@@ -29,8 +29,3 @@ function Test-IsCurrentUserAnAdministrator
 {
 	(new-object System.Security.Principal.WindowsPrincipal([System.Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole('Administrators');
 }
-
-function Goto-oss
-{
-	set-location d:\oss;
-}
