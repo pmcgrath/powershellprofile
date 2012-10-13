@@ -1,14 +1,30 @@
-# pmcgrath @ 20/03/2010
+# pmcgrath @ 29/08/2012
 # See Profile_Setup_Readme.txt - to make changes effective . $profile.allusersallhosts
 
 # RabbitMQ environment - Based on this - http://www.rabbitmq.com/install-windows-manual.html
 
 # PENDING - Possibly only if an admin or service user 
 
-# Machine level environment variables
-[System.Environment]::SetEnvironmentVariable('ERLANG_HOME', 'c:\program files\erl5.8.5', 'Machine');
-[System.Environment]::SetEnvironmentVariable('RABBITMQ_SERVER', 'd:\programfiles\rabbitmq_server-2.7.0', 'Machine');
+$erlangHomeValue = 'd:\utilities\erl';
+$rabbitMQServerValue = 'd:\utilities\rabbitmq-server';
 
-# Extend path - so we can run rabbit commands from anywhere
-Extend-EnvironmentPath @("$($env:RABBITMQ_SERVER)\sbin");
+if($env:ERLANG_HOME -eq $null -or $env:RABBITMQ_SERVER -eq $null) 
+{ 
+	if (Test-IsCurrentUserAnAdministrator)
+	{
+		[Environment]::SetEnvironmentVariable('ERLANG_HOME', $erlangHomeValue, 'Machine');
+		$env:ERLANG_HOME = $erlangHomeValue;
+		
+		[Environment]::SetEnvironmentVariable('RABBITMQ_SERVER', $rabbitMQServerValue, 'Machine');
+		$env:RABBITMQ_SERVER = $rabbitMQServerValue;
+	}
+	else
+	{
+		write-host 'ERLANG_HOME and RABBITMQ_SERVER environment variables must be set at least once by an administrator';
+	}
+}
 
+# Ensure the following are in the path - if they don't exist will ignore anyway
+Extend-EnvironmentPath @(
+	"$erlangHomeValue\bin",
+	"$rabbitMQServerValue\sbin");

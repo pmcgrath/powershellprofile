@@ -2,20 +2,6 @@
 # See Profile_Setup_Readme.txt - to make changes effective . $profile.allusersallhosts
 
 # Common functions - should be the first file sourced 
-function Set-BrowserProxyUsage
-(
-	[switch] $useProxy
-)
-{
-	$useProxySettingValueForIE = 0;
-	if ($useProxy) { $useProxySettingValueForIE = 1; }
-
-	push-location;	
-	set-location 'HKCU:\software\microsoft\windows\currentversion\internet settings';
-	set-itemproperty . ProxyEnable $useProxySettingValueForIE;
-	pop-location;
-}
-
 function Extend-EnvironmentPath
 (
 	[string[]] $additions
