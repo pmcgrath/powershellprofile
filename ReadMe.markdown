@@ -12,6 +12,7 @@ Assumptions
 	* d:\utilities  
 		* d:\utilities\erl  
 		* d:\utilities\mongoodb  
+		* d:\utilities\putty  
 		* d:\utilities\rabbitmq-server  
 
 	
