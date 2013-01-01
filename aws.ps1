@@ -10,6 +10,7 @@ function Connect-ToEc2Instance
 	[string] $keyFilePath	= "$($env:home)\.aws\$($env:username)_aws_keys.ppk"
 )
 {
+	# Using putty instead of ssh directly as vim is pretty unusable when connecting using the powershell and ssh combination
 	putty.exe -ssh -i $keyFilePath "ubuntu@$machineName";
 }
 
