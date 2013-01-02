@@ -10,6 +10,7 @@ Assumptions
 * Software is installed in very specific directories  
 	* d:\ruby  
 	* d:\utilities  
+		* d:\utilities\clojure 
 		* d:\utilities\erl  
 		* d:\utilities\mongoodb  
 		* d:\utilities\putty  
