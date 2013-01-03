@@ -7,5 +7,5 @@
 
 # Dot source all script files in the d:\psprofile folder in alphabetical order but sourcing common-functions first
 push-location;
-@(get-childitem d:\psprofile\common-functions.ps1) + (get-childitem d:\psprofile\*.ps1 -exclude common-functions.ps1 | sort name) | sort name | % { "Sourcing $($_.FullName)"; . $_.FullName; }
+@(get-childitem d:\psprofile\common-functions.ps1) + (get-childitem d:\psprofile\*.ps1 -exclude common-functions.ps1 | sort name) | % { "Sourcing $($_.FullName)"; . $_.FullName; }
 pop-location;
