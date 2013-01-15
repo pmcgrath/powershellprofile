@@ -49,48 +49,61 @@ function Test-IsCurrentUserAnAdministrator
 	(new-object System.Security.Principal.WindowsPrincipal([System.Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole('Administrators');
 }
 
-function Get-GitBranchName
+function Get-GitDirectoryPath
 {
-	# This stuff is just content i have extracted from https://github.com/dahlbyk/posh-git
-	# It is a much simplier version, which does not cater for all the stuff they do and certainly not submodules etc.
-	$gitDirectoryPath = $null;
-	$branchName = $null;
-	
+	# Find .git directory if any in parental hierarchy, null if none found
     $directory = get-item .;
     while ($directory -ne $null) 
 	{
         $potentialGitDirectoryPath = join-path $directory.FullName '.git';
-		if (test-path $potentialGitDirectoryPath) 
-		{
-            $gitDirectoryPath = $potentialGitDirectoryPath;
-			break;
-        } 
-        else 
-		{
-            $directory = $directory.Parent
-        }
+		if (test-path $potentialGitDirectoryPath) { return $potentialGitDirectoryPath; } 
+		
+        $directory = $directory.Parent;
     }
 	
-	if ($gitDirectoryPath)
-	{
-		$branchNameLine = get-content (join-path $gitDirectoryPath 'HEAD') | select -first 1;
-		$branchName = $branchNameLine.Replace('ref: refs/heads/', '');
-	}
+	return $null;
+}
 
+function Get-GitBranchCount
+{
+	# Just local branches
+	return @(dir (join-path $gitDirectoryPath /refs/heads) -file).Length;
+}
+
+function Get-GitBranchName
+(
+	[string] $gitDirectoryPath
+)
+{
+	$branchNameLine = get-content (join-path $gitDirectoryPath 'HEAD') | select -first 1;
+	return $branchNameLine.Replace('ref: refs/heads/', '');
+}
+
+function Get-GitInformation
+{
+	# This stuff is just content i have extracted from https://github.com/dahlbyk/posh-git
+	# It is a much simplier version, which does not cater for all the stuff they do and certainly not submodules etc.
+	$gitDirectoryPath = Get-GitDirectoryPath;
+	if (-not $gitDirectoryPath) { return $null; }
+	
+	$branchCount = Get-GitBranchCount $gitDirectoryPath;
+	$branchName = Get-GitBranchName $gitDirectoryPath;
+	
+	if ($branchCount -gt 1) { return "$branchCount*$branchName"; }
 	return $branchName;
 }
 
 function prompt()
 {
 	# Can use the following to get existing prompt "(dir function:prompt).Definition"
-	$gitBranchName = Get-GitBranchName;
+	$gitInformation = Get-GitInformation;
 
 	$originalForegroundColour = $host.UI.RawUI.ForegroundColor;
     write-host "PS $pwd" -nonewline;
-	if ($gitBranchName)
+	if ($gitInformation)
 	{ 
 		$host.UI.RawUI.ForegroundColor = 'DarkCyan';
-		write-host " [$gitBranchName] " -nonewline;
+		write-host " [$gitInformation] " -nonewline;
 		$host.UI.RawUI.ForegroundColor = $originalForegroundColour;
 	};	
 	
