@@ -48,3 +48,52 @@ function Test-IsCurrentUserAnAdministrator
 {
 	(new-object System.Security.Principal.WindowsPrincipal([System.Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole('Administrators');
 }
+
+function Get-GitBranchName
+{
+	# This stuff is just content i have extracted from https://github.com/dahlbyk/posh-git
+	# It is a much simplier version, which does not cater for all the stuff they do and certainly not submodules etc.
+	$gitDirectoryPath = $null;
+	$branchName = $null;
+	
+    $directory = get-item .;
+    while ($directory -ne $null) 
+	{
+        $potentialGitDirectoryPath = join-path $directory.FullName '.git';
+		if (test-path $potentialGitDirectoryPath) 
+		{
+            $gitDirectoryPath = $potentialGitDirectoryPath;
+			break;
+        } 
+        else 
+		{
+            $directory = $directory.Parent
+        }
+    }
+	
+	if ($gitDirectoryPath)
+	{
+		$branchNameLine = get-content (join-path $gitDirectoryPath 'HEAD') | select -first 1;
+		$branchName = $branchNameLine.Replace('ref: refs/heads/', '');
+	}
+
+	return $branchName;
+}
+
+function prompt()
+{
+	# Can use the following to get existing prompt "(dir function:prompt).Definition"
+	$gitBranchName = Get-GitBranchName;
+
+	$originalForegroundColour = $host.UI.RawUI.ForegroundColor;
+    write-host "PS $pwd" -nonewline;
+	if ($gitBranchName)
+	{ 
+		$host.UI.RawUI.ForegroundColor = 'DarkCyan';
+		write-host " [$gitBranchName] " -nonewline;
+		$host.UI.RawUI.ForegroundColor = $originalForegroundColour;
+	};	
+	
+	# Must return a string
+	'>';
+}
