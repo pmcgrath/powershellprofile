@@ -95,7 +95,14 @@ function Get-GitInformation
 
 function prompt()
 {
-	# Can use the following to get existing prompt "(dir function:prompt).Definition"
+	# If not a file system then cannot be a git reposiotry so exit with default prompt
+	if (($executionContext.SessionState.Path.CurrentLocation).Provider.Name -ne 'FileSystem')
+	{
+		# Can use the following to get existing prompt "(dir function:prompt).Definition" which is what we are returning here
+		return "PS $($executionContext.SessionState.Path.CurrentLocation)$('>' * ($nestedPromptLevel + 1))";
+	}
+	
+	# File system, so could be a git repository 
 	$gitInformation = Get-GitInformation;
 
 	$originalForegroundColour = $host.UI.RawUI.ForegroundColor;
