@@ -9,7 +9,7 @@ if (Test-IsCurrentUserAnAdministrator -and ($host.Name -eq 'ConsoleHost')) { $ho
 if($env:Home -eq $null) 
 { 
 	$homeValue = (join-path c:\users $env:UserName);
-	
+
 	# See http://technet.microsoft.com/en-us/library/ff730964.aspx for why we use the second command to make sure it is available immediately
 	[Environment]::SetEnvironmentVariable('Home', $homeValue, 'User');
 	$env:Home = $homeValue;

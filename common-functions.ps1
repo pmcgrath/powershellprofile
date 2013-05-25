@@ -31,10 +31,10 @@ function Start-SshAgent
 
 function Set-RubyEnvironment
 (
-	[string] $version	= '1.9.3-194'
+	[string] $version	= '2.0.0-p0'
 )
 {
-	$newRubyEnvironmentPath = "d:\ruby\ruby-$version\bin";
+	$newRubyEnvironmentPath = "d:\utilities\rubies\ruby-$version\bin";
 	if (! (test-path $newRubyEnvironmentPath)) { throw "Path for ruby v$version does not exist ($newRubyEnvironmentPath)"; }
 	
 	# Can use this to see current version if any's load paths - helps to identify the location : ruby -e 'puts $:'
