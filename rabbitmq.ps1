@@ -2,6 +2,7 @@
 # See Profile_Setup_Readme.txt - to make changes effective . $profile.allusersallhosts
 
 # RabbitMQ environment - Based on this - http://www.rabbitmq.com/install-windows-manual.html
+#							Extracted download file and place contents in d:\utilities\rabbitmq-server
 
 # PENDING - Possibly only if an admin or service user 
 
