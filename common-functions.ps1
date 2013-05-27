@@ -31,7 +31,7 @@ function Start-SshAgent
 
 function Set-RubyEnvironment
 (
-	[string] $version	= '2.0.0-p0'
+	[string] $version	= '2.0.0-p195'
 )
 {
 	$newRubyEnvironmentPath = "d:\utilities\rubies\ruby-$version\bin";
