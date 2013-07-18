@@ -10,7 +10,7 @@
 #							Switch to Release and x64
 #							Build
 #						Run the following
-#							mkdir d:\utiliries\redis; 
+#							mkdir d:\utiliries\redis;
 #							dir d:\oss\msredis\msvs\x64\Release *.exe | % { copy-item $_.fullname d:\utilities\redis -force }
 
 # Ensure the following are in the path - if they don't exist will ignore anyway

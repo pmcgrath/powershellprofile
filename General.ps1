@@ -6,24 +6,24 @@
 if (Test-IsCurrentUserAnAdministrator -and ($host.Name -eq 'ConsoleHost')) { $host.UI.RawUI.ForegroundColor = 'Green'; }
 
 # Ensure the home environment variable is set as required by ssh etc
-if($env:Home -eq $null) 
-{ 
+if($env:Home -eq $null)
+{
 	$homeValue = (join-path c:\users $env:UserName);
 
 	# See http://technet.microsoft.com/en-us/library/ff730964.aspx for why we use the second command to make sure it is available immediately
 	[Environment]::SetEnvironmentVariable('Home', $homeValue, 'User');
 	$env:Home = $homeValue;
-} 
+}
 
 # Ensure TERM environment variable is set to avoid a less utility warning - See http://stackoverflow.com/questions/7949956/git-diff-not-working-terminal-not-fully-functional
 # Had to use xterm to avoid shh issues such as when using the top command and getting a warning
 $env:TERM = 'cygwin';
- 
+
 # Ensure the following are in the path - if they don't exist will ignore anyway
 Extend-EnvironmentPath @(
-	'c:\program files (x86)\git\bin', 
+	'c:\program files (x86)\git\bin',
 	'c:\program files (x86)\vim\vim73\vim.exe',
-	'c:\program files\microsoft sdks\windows\v7.1\bin', 
+	'c:\program files\microsoft sdks\windows\v7.1\bin',
 	'c:\windows\microsoft.net\framework\v4.0.30319');
 
 # Set up default ruby - included here as i expect to have on all my machines

@@ -3,7 +3,7 @@
 
 # Clojure environment - Based on this - http://hemanthps.blogspot.com/2012/07/how-to-install-clojure-and-leiningen-on.html
 
-# PENDING - Possibly only if an admin or service user 
+# PENDING - Possibly only if an admin or service user
 #			Currently only for current user, should probably set at the machine level
 
 $classPath = $env:CLASSPATH + '';
