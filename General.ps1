@@ -24,12 +24,13 @@ Extend-EnvironmentPath @(
 	'c:\program files (x86)\git\bin',
 	'c:\program files (x86)\vim\vim73\vim.exe',
 	'c:\program files\microsoft sdks\windows\v7.1\bin',
-	'c:\windows\microsoft.net\framework\v4.0.30319');
+	'c:\windows\microsoft.net\framework\v4.0.30319',
+	'd:\utilities\node');
 
 # Set up default ruby - included here as i expect to have on all my machines
 Set-RubyEnvironment;
 
-# Common aliases - assume they exist rather than clutering with tests
+# Common aliases - assume they exist rather than cluttering with tests
 set-alias devenv 'c:\program files (x86)\microsoft visual studio 10.0\common7\ide\devenv.exe';
 set-alias gitk 'c:\program files (x86)\git\cmd\gitk.cmd';
 set-alias np 'c:\program files (x86)\notepad++\notepad++.exe';

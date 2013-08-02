@@ -7,7 +7,7 @@
 # PENDING - Possibly only if an admin or service user
 
 $erlangHomeValue = 'd:\utilities\erl';
-$rabbitMQServerValue = 'd:\utilities\rabbitmq-server';
+$rabbitMQServerValue = 'd:\utilities\rabbitmq_server';
 
 if($env:ERLANG_HOME -eq $null -or $env:RABBITMQ_SERVER -eq $null)
 {
