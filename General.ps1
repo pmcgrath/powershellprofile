@@ -22,10 +22,11 @@ $env:TERM = 'cygwin';
 # Ensure the following are in the path - if they don't exist will ignore anyway
 Extend-EnvironmentPath @(
 	'c:\program files (x86)\git\bin',
-	'c:\program files (x86)\vim\vim73\vim.exe',
+	'c:\program files (x86)\vim\vim73',
 	'c:\program files\microsoft sdks\windows\v7.1\bin',
 	'c:\windows\microsoft.net\framework\v4.0.30319',
-	'd:\utilities\node');
+	'd:\utilities\node',
+	'd:\utilities\SysinternalsSuite');
 
 # Set up default ruby - included here as i expect to have on all my machines
 Set-RubyEnvironment;
