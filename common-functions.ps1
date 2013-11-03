@@ -2,12 +2,22 @@
 # See Profile_Setup_Readme.txt - to make changes effective . $profile.allusersallhosts
 
 # Common functions - should be the first file sourced
+function Connect-ToEc2Instance
+(
+	[string] $machineName,														# Dns name i.e. ec2-54-228-14-193.eu-west-1.compute.amazonaws.com
+	[string] $keyFilePath	= "$($env:home)\.aws\$($env:username)_aws_keys.ppk"
+)
+{
+	# Using putty instead of ssh directly as vim is pretty unusable when connecting using the powershell and ssh combination
+	putty.exe -ssh -i $keyFilePath "ubuntu@$machineName";
+}
+
 function Extend-EnvironmentPath
 (
 	[string[]] $additions
 )
 {
-	$additions | % { if (! ($env:Path.Contains($_))) { $env:Path += ";$_"; }}	# Can see existing with $env:Path.Split(';')
+	$additions | % { if (! ($env:Path.Contains($_))) { if (test-path $_) { $env:Path += ";$_"; } } }	# Can see existing with $env:Path.Split(';')
 }
 
 function Start-SshAgent
