@@ -22,9 +22,10 @@ $env:TERM = 'cygwin';
 # Ensure the following are in the path - if they don't exist will ignore anyway
 Extend-EnvironmentPath @(
 	'c:\program files (x86)\git\bin',
-	'c:\program files (x86)\vim\vim73',
+	'c:\program files (x86)\vim\vim74',
 	'c:\program files\microsoft sdks\windows\v7.1\bin',
 	'c:\windows\microsoft.net\framework\v4.0.30319',
+	'c:\program files\java\jdk1.7.0_25\bin',
 	'd:\utilities\node',
 	'd:\utilities\SysinternalsSuite');
 
@@ -32,6 +33,6 @@ Extend-EnvironmentPath @(
 Set-RubyEnvironment;
 
 # Common aliases - assume they exist rather than cluttering with tests
-set-alias devenv 'c:\program files (x86)\microsoft visual studio 10.0\common7\ide\devenv.exe';
+set-alias devenv 'c:\program files (x86)\microsoft visual studio 11.0\common7\ide\devenv.exe';
 set-alias gitk 'c:\program files (x86)\git\cmd\gitk.cmd';
 set-alias np 'c:\program files (x86)\notepad++\notepad++.exe';
