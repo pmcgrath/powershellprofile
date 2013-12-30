@@ -77,6 +77,9 @@ function Get-GitDirectoryPath
 }
 
 function Get-GitBranchCount
+(
+	[string] $gitDirectoryPath
+)
 {
 	# Just local branches
 	return @(dir (join-path $gitDirectoryPath /refs/heads) -file).Length;

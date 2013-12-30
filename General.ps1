@@ -26,19 +26,15 @@ Extend-EnvironmentPath @(
 	'c:\program files\microsoft sdks\windows\v7.1\bin',
 	'c:\windows\microsoft.net\framework\v4.0.30319',
 	'c:\program files\java\jdk1.7.0_25\bin',
+	'd:\utilities\go\bin',
+	'd:\utilities\mongodb\bin',
 	'd:\utilities\node',
+	'd:\utilities\putty', 				# putty environment - when using ssh directly from within powershell, vim and the sheel gets messed up regularly so i use putty
 	'd:\utilities\SysinternalsSuite');
 
 # Set up default ruby - included here as i expect to have on all my machines
 Set-RubyEnvironment;
 
-# Optionals
-# mongo environment
-Extend-EnvironmentPath d:\utilities\mongodb\bin;
-
-# putty environment - when using ssh directly from within powershell, vim and the sheel gets messed up regularly so i use putty
-Extend-EnvironmentPath d:\utilities\putty;
-	
 # RabbitMQ environment - Based on this - http://www.rabbitmq.com/install-windows-manual.html
 #	Extracted download file and place contents in d:\utilities\rabbitmq-server
 # 	PENDING - Possibly only if an admin or service user
