@@ -81,6 +81,7 @@ function Get-GitBranchCount
 	[string] $gitDirectoryPath
 )
 {
+	# This does not work after a git gc as the files are removed, entries are added to the config file instead
 	# Just local branches
 	return @(dir (join-path $gitDirectoryPath /refs/heads) -file).Length;
 }
