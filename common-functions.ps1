@@ -108,6 +108,23 @@ function Get-GitInformation
 	return $branchName;
 }
 
+function Widen-Window
+(
+	[int]	$resizeBy = 25
+)
+{
+	$resizeByFactor = 1 + ($resizeBy / 100);
+
+	$bufferSize = $host.UI.RawUI.BufferSize;
+	$windowSize = $host.UI.RawUI.WindowSize;
+
+	$bufferSize.Width = $bufferSize.Width * $resizeByFactor;
+	$windowSize.Width = $windowSize.Width * $resizeByFactor;
+
+	$host.UI.RawUI.BufferSize = $bufferSize;
+	$host.UI.RawUI.WindowSize = $windowSize;
+}
+
 function prompt()
 {
 	# If not a file system then cannot be a git reposiotry so exit with default prompt
