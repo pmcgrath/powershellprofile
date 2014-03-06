@@ -27,13 +27,17 @@ Extend-EnvironmentPath @(
 	'c:\windows\microsoft.net\framework\v4.0.30319',
 	'c:\program files\java\jdk1.7.0_25\bin',
 	'd:\utilities\go\bin',
+	'd:\utilities\mercurial',
 	'd:\utilities\mongodb\bin',
 	'd:\utilities\node',
 	'd:\utilities\putty', 				# putty environment - when using ssh directly from within powershell, vim and the sheel gets messed up regularly so i use putty
-	'd:\utilities\SysinternalsSuite');
+	'd:\utilities\sysinternalssuite');
 
 # Set up default ruby - included here as i expect to have on all my machines
 Set-RubyEnvironment;
+
+# GO
+$env:GOROOT = 'd:\utilities\go';
 
 # RabbitMQ environment - Based on this - http://www.rabbitmq.com/install-windows-manual.html
 #	Extracted download file and place contents in d:\utilities\rabbitmq-server
@@ -77,5 +81,3 @@ Extend-EnvironmentPath d:\utilities\redis;
 set-alias devenv 'c:\program files (x86)\microsoft visual studio 11.0\common7\ide\devenv.exe';
 set-alias gitk 'c:\program files (x86)\git\cmd\gitk.cmd';
 set-alias np 'c:\program files (x86)\notepad++\notepad++.exe';
-
-
